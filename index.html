@@ -37,7 +37,7 @@
           <span class="currency">SOL</span>
         </div>
         <button id="createGame" class="btn btn-primary">Create Game & Generate Link</button>
-        <input id="gameLink" type="text" readonly style="margin-top:8px; font-size:0.9rem; padding:6px; width:100%; border-radius:6px; border:1px solid #ffd700; background:#121212; color:#fff;"/>
+        <input id="gameLink" type="text" readonly style="margin-top:8px;" />
 
         <div class="current-bet">
           <div>Each Player: <strong id="eachBet">0 SOL</strong></div>
@@ -69,13 +69,31 @@
       <ul>
         <li>Host creates a game and shares the link.</li>
         <li>Joiner opens link, connects Phantom.</li>
-        <li>Winner is decided by the board. Loser approves SOL transfer.</li>
-        <li>Runs on <b>Solana Devnet</b> — use a faucet to get test SOL.</li>
+        <li>Winner receives the game value in SOL.</li>
+        <li>Runs on <b>Solana Devnet</b> — use a faucet.</li>
       </ul>
     </div>
   </div>
 
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB8Oi8VoepZvTOfEJ_NnTYDnH4i6nx1qsg",
+      authDomain: "tictactoepvp-ccd56.firebaseapp.com",
+      projectId: "tictactoepvp-ccd56",
+      storageBucket: "tictactoepvp-ccd56.firebasestorage.app",
+      messagingSenderId: "136034799077",
+      appId: "1:136034799077:web:8812bcf82ba1915701f30c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    window.db = getDatabase(app);
+  </script>
+
   <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
