@@ -1,5 +1,5 @@
 const SOLANA_CLUSTER = "devnet";
-const PUBLIC_URL = "https://YOUR_VERCEL_URL"; // ← replace with your Vercel production URL
+const PUBLIC_URL = "https://tictactoepvp2-monfvksye-prsweeeet-5817s-projects.vercel.app/"; // ← replace with your Vercel production URL
 
 function getConnection() {
   return new solanaWeb3.Connection(solanaWeb3.clusterApiUrl(SOLANA_CLUSTER), "confirmed");
