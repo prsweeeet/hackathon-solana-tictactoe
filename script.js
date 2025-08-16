@@ -1,4 +1,5 @@
 const SOLANA_CLUSTER = "devnet";
+const PUBLIC_URL = "https://YOUR_VERCEL_URL"; // ← replace with your Vercel production URL
 
 function getConnection() {
   return new solanaWeb3.Connection(solanaWeb3.clusterApiUrl(SOLANA_CLUSTER), "confirmed");
@@ -20,14 +21,12 @@ function toast(msg, type = "info") {
   setTimeout(() => { el.style.transform = "translateX(110%)"; setTimeout(()=>el.remove(), 220); }, 2800);
 }
 
-// Connect Phantom
 async function connectPhantom() {
   if (!window.solana || !window.solana.isPhantom) throw new Error("Phantom not found!");
   const resp = await window.solana.connect({ onlyIfTrusted: false });
   return { provider: window.solana, publicKey: resp.publicKey };
 }
 
-// Transfer SOL
 async function transferSOL_phantom(fromCtx, toPubkeyString, amountSOL) {
   const conn = getConnection();
   const toPubkey = new solanaWeb3.PublicKey(toPubkeyString);
@@ -51,14 +50,13 @@ async function transferSOL_phantom(fromCtx, toPubkeyString, amountSOL) {
   return sig;
 }
 
-// PvP Game Class
 class PvPGame {
   constructor() {
     this.board = Array(9).fill("");
     this.currentPlayer = "X";
     this.gameValue = 0;
-    this.playerX = null; // host
-    this.playerO = null; // joiner
+    this.playerX = null;
+    this.playerO = null;
     this._winningLine = null;
 
     this.initUI();
@@ -89,7 +87,9 @@ class PvPGame {
 
       const gameId = Math.floor(Math.random() * 1000000);
       const value = parseFloat(document.getElementById("gameValue").value);
-      const link = `${location.origin}?game=${gameId}&host=${ctx.publicKey}&value=${value}`;
+
+      // Use the PUBLIC_URL to ensure it works for anyone
+      const link = `${PUBLIC_URL}/?game=${gameId}&host=${ctx.publicKey}&value=${value}`;
       document.getElementById("gameLink").value = link;
       toast("Game link generated! Share with Joiner.", "success");
     }).catch(err => toast(err.message || "Connect Phantom failed", "error"));
