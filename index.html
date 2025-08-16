@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tic Tac Toe PvP - SOL Betting (Devnet)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Tic Tac Toe PvP</h1>
+      <p class="subtitle">Host → Share Link → Joiner connects Phantom → Winner gets the pot</p>
+    </header>
+
+    <div class="game-section">
+      <!-- Game Board -->
+      <div class="game-board">
+        <div id="status" class="status">Host creates game to start</div>
+        <div id="board" class="board">
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+          <div class="cell" data-cell></div>
+        </div>
+      </div>
+
+      <!-- Game Setup -->
+      <div class="betting-panel">
+        <h3>Game Setup</h3>
+        <div class="bet-input">
+          <input id="gameValue" type="number" placeholder="2.0" step="0.1" min="0.2" />
+          <span class="currency">SOL</span>
+        </div>
+        <button id="createGame" class="btn btn-primary">Create Game & Generate Link</button>
+        <input id="gameLink" type="text" readonly style="margin-top:8px; font-size:0.9rem; padding:6px; width:100%; border-radius:6px; border:1px solid #ffd700; background:#121212; color:#fff;"/>
+
+        <div class="current-bet">
+          <div>Each Player: <strong id="eachBet">0 SOL</strong></div>
+          <div>Total Pot: <strong id="potDisplay">0 SOL</strong></div>
+        </div>
+      </div>
+
+      <!-- Wallets -->
+      <div class="wallet-panel">
+        <h3>Wallets</h3>
+        <div class="wallet-info">
+          <div><strong>Host (X):</strong> <span id="walletX">Not Connected</span></div>
+          <div><strong>Joiner (O):</strong> <span id="walletO">Not Connected</span></div>
+        </div>
+
+        <div style="display:grid; gap:8px; margin-top:12px">
+          <button id="connectO" class="btn btn-outline">Connect Phantom (Joiner)</button>
+        </div>
+
+        <div class="wallet-status" id="walletStatus" style="margin-top:12px">
+          <span>Network: Devnet</span>
+        </div>
+
+        <button id="startGame" class="btn btn-primary" disabled style="margin-top:12px">Start Game</button>
+      </div>
+    </div>
+
+    <div class="game-rules">
+      <h3>Rules</h3>
+      <ul>
+        <li>Host creates a game and shares the link.</li>
+        <li>Joiner opens link, connects Phantom.</li>
+        <li>Winner is decided by the board. Loser approves SOL transfer.</li>
+        <li>Runs on <b>Solana Devnet</b> — use a faucet to get test SOL.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

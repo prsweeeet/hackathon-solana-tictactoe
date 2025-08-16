@@ -1,0 +1,57 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg,#000 0%, #0a0a0a 30%, #ff9f1c 70%, #ffd700 100%);
+  color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.container { max-width:1100px; margin: 0 auto; padding: 18px; }
+
+header { text-align:center; margin-bottom:24px; }
+header h1 { font-size:2.6rem; color:#fff; margin-bottom:6px; }
+.subtitle { color: rgba(255,255,255,0.9); }
+
+.game-section { display:grid; grid-template-columns: 2fr 1fr 1fr; gap:18px; margin-bottom:18px; }
+
+.game-board, .betting-panel, .wallet-panel, .game-rules {
+  background:#0b0b0b; border:2px solid #ffd700; border-radius:12px; padding:18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.status { font-weight:700; margin-bottom:12px; padding:12px; border-radius:8px; background:#121212; border:1px solid #ffd700; }
+
+.board {
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; max-width:320px; margin: 0 auto;
+}
+.cell {
+  width:96px; height:96px; background:#121212; border:2px solid #ffd700; border-radius:10px;
+  display:flex; align-items:center; justify-content:center; font-size:2.2rem; cursor:pointer; transition:all .12s;
+}
+.cell:hover { transform:scale(1.04); background:#ffd700; color:#000; }
+.cell.x, .cell.o { background:#121212; color:#fff; }
+.cell.winning { background:#ffd700; color:#000; box-shadow:0 8px 18px rgba(0,0,0,.25); }
+
+.bet-input { display:flex; gap:8px; align-items:center; margin-bottom:12px; background:#121212; border-radius:8px; padding:6px; border:1px solid #ffd700; }
+.bet-input input { flex:1; background:transparent; border:none; outline:none; color:#fff; padding:8px 10px; font-size:1rem; }
+.currency { background:#ffd700; color:#000; padding:8px 10px; border-radius:8px; font-weight:700; }
+
+.current-bet { margin-top:10px; background:#121212; padding:10px; border-radius:8px; border:1px solid #ffd700; text-align:center; }
+
+.btn { padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer; border:2px solid transparent; }
+.btn-primary { background: linear-gradient(135deg,#ffd700,#e6b800); color:#000; width:100%; }
+.btn-outline { background:transparent; color:#ffd700; border-color:#ffd700; width:100%; }
+.btn-secondary { background:#ffd700; color:#000; }
+
+.wallet-info { background:#121212; padding:10px; border-radius:8px; border:1px solid #ffd700; }
+
+.game-rules { padding:14px; }
+.game-rules ul { list-style:none; }
+.game-rules li { padding:8px 0; border-bottom:1px solid rgba(255,215,0,0.12); }
+.game-rules li:last-child { border-bottom:none; }
+
+@media (max-width:900px) {
+  .game-section { grid-template-columns: 1fr; }
+  .cell { width:80px; height:80px; font-size:1.9rem; }
+}
